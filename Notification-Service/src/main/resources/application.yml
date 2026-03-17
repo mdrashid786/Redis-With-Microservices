@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: notification-service
+
+  # ============================================================
+  # NO DATABASE (Stateless Service)
+  # ============================================================
+
+  # ============================================================
+  # REDIS CONFIGURATION (For Pub/Sub only)
+  # ============================================================
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+
+server:
+  port: 8004
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: INFO
+    com.notification.service.service.notificationservice: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics
+  endpoint:
+    health:
+      show-details: always
